@@ -171,11 +171,11 @@ the computed overlap flags can be checked against anatomy.
 | BraTS-PED-00128-000 | no  | no  | no |
 | BraTS-PED-00151-000 | no  | no  | no |
 
-![QC BraTS-PED-00033-000](qc/QC_BraTS-PED-00033-000.png)
-![QC BraTS-PED-00001-000](qc/QC_BraTS-PED-00001-000.png)
-![QC BraTS-PED-00043-000](qc/QC_BraTS-PED-00043-000.png)
-![QC BraTS-PED-00128-000](qc/QC_BraTS-PED-00128-000.png)
-![QC BraTS-PED-00151-000](qc/QC_BraTS-PED-00151-000.png)
+![QC BraTS-PED-00033-000](mni-mapping-sample/QC_BraTS-PED-00033-000.png)
+![QC BraTS-PED-00001-000](mni-mapping-sample/QC_BraTS-PED-00001-000.png)
+![QC BraTS-PED-00043-000](mni-mapping-sample/QC_BraTS-PED-00043-000.png)
+![QC BraTS-PED-00128-000](mni-mapping-sample/QC_BraTS-PED-00128-000.png)
+![QC BraTS-PED-00151-000](mni-mapping-sample/QC_BraTS-PED-00151-000.png)
 
 ## Notes
 
