@@ -118,14 +118,27 @@ Prints `Running CC registration pipeline on N pHGG cases` (N should be 104).
 Writes `cc_results_peds/*_cc.json`, warped segs, and `cc_results_phgg.csv`. Set
 `TEST_ONLY = True` near the bottom to run only 3 cases first.
 
-Adult GBM:
+Adult GBM (two steps, in order):
 
 ```bash
-python scan_gli_et.py            # filter GLI -> cc_results_gbm/gbm_cases.txt (~1213)
-python cc_registration_gbm.py    # register the GBM-like cases
+python scan_gli_et.py            # step 1: define the GBM cohort
+python cc_registration_gbm.py    # step 2: register that cohort
 ```
 
-Writes `cc_results_gbm/*_cc.json`, warped segs, and `cc_results_gbm.csv`.
+Step 1 — `scan_gli_et.py` selects which GLI cases count as GBM. The raw BraTS-GLI
+download contains ~1,251 cases of mixed grade. This script reads every
+segmentation, counts enhancing-tumor (ET) voxels, and keeps only cases with
+ET > 100 (enhancement used as a GBM proxy; cases with no/near-zero enhancement are
+likely low-grade and dropped). It writes the surviving subject IDs (~1,213) to
+`cc_results_gbm/gbm_cases.txt`. It runs once, is fast (no registration), and must
+be run before step 2 — `cc_registration_gbm.py` reads `gbm_cases.txt` and will
+exit with an error if it is missing.
+
+Step 2 — `cc_registration_gbm.py` registers each case in `gbm_cases.txt` and
+writes `cc_results_gbm/*_cc.json`, warped segs, and `cc_results_gbm.csv`.
+
+(The pediatric run needs no such filter — its cohort comes from the metadata and
+histology labels, not from an enhancement threshold.)
 
 Both scripts skip any case that already has a `_cc.json`, so an interrupted run
 resumes on re-run. Delete error JSONs first so they retry:
