@@ -24,10 +24,9 @@ Output per cohort: one `<subject>_cc.json` per case and a combined
 ## Layout
 
 ```
-cc-registration-pipeline/
+PEDs-LGG/
 ├── README.md
 ├── requirements.txt
-├── setup_atlas.py              # regenerate CC masks from JHU atlas (optional)
 ├── scan_gli_et.py              # filter GLI to GBM-like cases (ET > 100)
 ├── download_gbm_synapse.py     # download adult GBM (BraTS-GLI) from Synapse
 ├── cc_registration_peds.py     # register pHGG -> cc_results_peds/
@@ -52,7 +51,7 @@ Python 3.11 is recommended (best antspyx wheel coverage; 3.9 often forces a slow
 source build).
 
 ```bash
-cd cc-registration-pipeline
+cd PEDs-LGG
 python3.11 -m venv venv_ants
 source venv_ants/bin/activate
 pip install --upgrade pip
@@ -148,13 +147,9 @@ python -c "import json,glob,os;[os.remove(f) for f in glob.glob('cc_results_peds
 ## Data sources
 
 - `atlas/CC_*.nii.gz` — from the JHU-ICBM DTI-81 White-Matter Labels atlas
-  (labels 3=genu, 4=body, 5=splenium), MNI152 space. Regenerate with
-  `setup_atlas.py` if FSL is installed. References: Mori et al., NeuroImage 2008;
-  Wakana et al., NeuroImage 2007.
+  (labels 3=genu, 4=body, 5=splenium), MNI152 space. References: Mori et al.,
+  NeuroImage 2008; Wakana et al., NeuroImage 2007.
 - `data/histologies.tsv` — OpenPedCan v15 release (D3b Center), used to classify
   CBTN cases as high-grade for cohort selection.
 - `data/BraTS-PEDs_metadata.tsv` — BraTS-PEDs metadata (Source, cohort split,
   MappingID).
-
-Do not commit a Synapse token. `download_gbm_synapse.py` reads it from
-`SYNAPSE_AUTH_TOKEN`.
