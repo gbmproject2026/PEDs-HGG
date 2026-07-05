@@ -134,6 +134,28 @@ resumes on re-run. Delete error JSONs first so they retry:
 python -c "import json,glob,os;[os.remove(f) for f in glob.glob('cc_results_peds/*_cc.json') if json.load(open(f)).get('error')]"
 ```
 
+## Registration output (descriptive)
+
+CC involvement counts from the registration stage, before any statistical
+analysis. WT = whole tumor, TC = tumor core, ET = enhancing tumor.
+
+| Metric | pHGG (n=104) | Adult GBM (n=1213) |
+|--------|--------------|--------------------|
+| CC whole — WT | 62 (59.6%) | 623 (51.4%) |
+| CC whole — TC | 34 (32.7%) | 341 (28.1%) |
+| CC whole — ET | 16 (15.4%) | 327 (27.0%) |
+| CC genu — TC | 27 (26.0%) | 179 (14.8%) |
+| CC genu — WT | 57 (54.8%) | 467 (38.5%) |
+| CC body — TC | 17 (16.3%) | 216 (17.8%) |
+| CC splenium — WT | 10 (9.6%) | 275 (22.7%) |
+| CC splenium — TC | 5 (4.8%) | 173 (14.3%) |
+| Butterfly WT | 45 (43.3%) | 422 (34.8%) |
+| Butterfly ET | 6 (5.8%) | 208 (17.1%) |
+
+Counts are cases with any overlap in that region. ET metrics reflect that a large
+share of pHGG is non-enhancing (et_vol = 0), unlike the enhancement-filtered GBM
+cohort. Significance testing is done in the separate analysis stage.
+
 ## Notes
 
 - Each case takes about 4–8 min; scripts use (CPU cores − 2) workers.
